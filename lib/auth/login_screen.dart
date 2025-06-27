@@ -7,7 +7,7 @@ import '../common/app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-  static const String routeName = '/';
+  static const String routeName = '/login';
 
   @override
   State<LoginScreen> createState() => _CleanLoginScreenState();
@@ -22,14 +22,14 @@ class _CleanLoginScreenState extends State<LoginScreen> {
       backgroundColor: AppColor.black,
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0,vertical: 50),
-          child: ListView(
-            children:[ Column(
+          padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 50),
+          child: ListView(children: [
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Login Title
                 Image.asset(
-                  AppAsset.appLogo,
+                  AppAssets.appLogo,
                   width: 121,
                 ),
                 const SizedBox(height: 40),
@@ -91,7 +91,9 @@ class _CleanLoginScreenState extends State<LoginScreen> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {Navigator.of(context).pushNamed(ForgetPass.routeName);},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(ForgetPass.routeName);
+                    },
                     child: const Text(
                       'Forgot Password ?',
                       style: TextStyle(
@@ -110,7 +112,8 @@ class _CleanLoginScreenState extends State<LoginScreen> {
                     style: ButtonStyle(
                         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
-                        backgroundColor: const WidgetStatePropertyAll(AppColor.yellow)),
+                        backgroundColor:
+                            const WidgetStatePropertyAll(AppColor.yellow)),
                     onPressed: () {},
                     child: const Padding(
                       padding: EdgeInsets.all(12.0),
@@ -135,7 +138,10 @@ class _CleanLoginScreenState extends State<LoginScreen> {
                       style: TextStyle(color: AppColor.white, fontSize: 14),
                     ),
                     TextButton(
-                      onPressed: () {Navigator.of(context).pushNamed(RegisterScreen.routeName);},
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(RegisterScreen.routeName);
+                      },
                       child: const Text(
                         " Create One",
                         style: TextStyle(color: Colors.yellow),
@@ -174,15 +180,17 @@ class _CleanLoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
-                        minimumSize: const WidgetStatePropertyAll(Size.fromHeight(50)),
+                        minimumSize:
+                            const WidgetStatePropertyAll(Size.fromHeight(50)),
                         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
-                        backgroundColor: const WidgetStatePropertyAll(AppColor.yellow)),
+                        backgroundColor:
+                            const WidgetStatePropertyAll(AppColor.yellow)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          AppAsset.googleIcon,
+                          AppAssets.googleIcon,
                         ),
                         const SizedBox(
                           width: 10,
@@ -199,7 +207,7 @@ class _CleanLoginScreenState extends State<LoginScreen> {
                 // Google Login Button
               ],
             ),
-         ] ),
+          ]),
         ),
       ),
     );

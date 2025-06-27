@@ -15,7 +15,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool visability = true;
   @override
   Widget build(BuildContext context) {
-    var size =MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +29,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               color: AppColor.yellow,
             )),
         title: Row(
-          children: [SizedBox(width:size.width*.23 ,),
+          children: [
+            SizedBox(
+              width: size.width * .23,
+            ),
             const Text(
               'Register',
               style: TextStyle(
@@ -43,14 +46,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       backgroundColor: AppColor.black,
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0,vertical: 20),
-          child: ListView(
-            children:[ Column(
+          padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 20),
+          child: ListView(children: [
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Login Title
                 Image.asset(
-                  AppAsset.registerPic,
+                  AppAssets.registerPic,
                 ),
                 const SizedBox(height: 30),
 
@@ -122,7 +125,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(15))),
                   ),
                 ),
-                const SizedBox(height: 20),TextFormField(
+                const SizedBox(height: 20),
+                TextFormField(
                   style: const TextStyle(color: Colors.white),
                   obscureText: visability,
                   decoration: InputDecoration(
@@ -205,7 +209,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: TextStyle(color: AppColor.white, fontSize: 14),
                     ),
                     TextButton(
-                      onPressed: () {Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);},
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushReplacementNamed(LoginScreen.routeName);
+                      },
                       child: const Text(
                         "Login",
                         style: TextStyle(color: Colors.yellow),
@@ -213,10 +220,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ],
                 )
-
               ],
             ),
-         ] ),
+          ]),
         ),
       ),
     );
