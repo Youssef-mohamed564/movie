@@ -3,6 +3,7 @@ import 'package:movie_app/auth/login_screen.dart';
 import 'package:movie_app/common/app_assets.dart';
 
 import '../common/app_colors.dart';
+import '../screens/home_screen/home_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -245,7 +246,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           backgroundColor:
                           const WidgetStatePropertyAll(AppColor.yellow)),
                       onPressed: () {
-    if(formKey.currentState?.validate()==true){}
+                      if(formKey.currentState?.validate()==true)
+                        Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+                         {}
                       },
                       child: const Padding(
                         padding: EdgeInsets.all(12.0),

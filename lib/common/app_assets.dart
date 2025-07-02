@@ -12,4 +12,12 @@ class AppAssets {
   static const String onBoarding5 = '${_imgPath}OnBoarding5.png';
   static const String onBoarding6 = '${_imgPath}OnBoarding6.png';
   static const String moviesIcon = '${_imgPath}movies icon.png';
+  static const String iconProfiel='assets/icons/Profiel.png';
+  static const String iconSearch='assets/icons/search.png';
+  static const String  iconHome='assets/icons/home.png';
+  static const String  iconExplore='assets/icons/explore.png';
+
+}
+class AppAnimations{
+  static const String popCorn='assets/animations/Animation - 1751406771817.json';
 }
