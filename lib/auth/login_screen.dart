@@ -4,6 +4,7 @@ import 'package:movie_app/auth/register_screen.dart';
 import 'package:movie_app/common/app_assets.dart';
 
 import '../common/app_colors.dart';
+import '../screens/home_screen/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -142,7 +143,9 @@ class _CleanLoginScreenState extends State<LoginScreen> {
                           backgroundColor:
                           const WidgetStatePropertyAll(AppColor.yellow)),
                       onPressed: () {
-                        if(formKey.currentState?.validate()==true){}
+                       // if(formKey.currentState?.validate()==true)
+                        Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+
                       }
                       ,
                       child: const Padding(

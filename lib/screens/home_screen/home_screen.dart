@@ -18,33 +18,75 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Widget>tabs=[HomeTab(),SearchTab(),ProfileTab(),ExploreTab(),];
-  int index=0;
+  List<Widget> tabs = [
+    HomeTab(),
+    SearchTab(),
+    ExploreTab(),
+    ProfileTab(),
+  ];
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     //final viewModel = Provider.of<ViewModel>(context);
     return Scaffold(
-     body: tabs[index],
-    bottomNavigationBar: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ClipRRect(borderRadius: BorderRadius.all(Radius.circular(16)),
-        child: BottomNavigationBar(
-
-          backgroundColor: AppColor.grayColor,
-          type: BottomNavigationBarType.fixed,
-          onTap: (value){
-            print('xx$value');
-            index=value;
-            setState(() {});
-          },
-          currentIndex:index,
-            items: [
-              BottomNavigationBarItem(activeIcon:Image.asset(AppAssets.iconHome,color: AppColor.yellowBg,) ,icon: Image.asset(AppAssets.iconHome),label: ''),
-              BottomNavigationBarItem(activeIcon:Image.asset(AppAssets.iconSearch,color: AppColor.yellowBg,) ,icon: Image.asset(AppAssets.iconSearch),label: ''),
-              BottomNavigationBarItem(activeIcon:Image.asset(AppAssets.iconExplore,color: AppColor.yellowBg,),icon: Image.asset(AppAssets.iconExplore),label: ''),
-              BottomNavigationBarItem(activeIcon:Image.asset(AppAssets.iconProfiel,color: AppColor.yellowBg,),icon:Image.asset(AppAssets.iconProfiel),label: ''),
-            ]),
+      backgroundColor: AppColor.black,
+      body: tabs[index],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+          child: BottomNavigationBar(
+              backgroundColor: AppColor.grayColor,
+              type: BottomNavigationBarType.fixed,
+              onTap: (value) {
+                index = value;
+                setState(() {});
+              },
+              currentIndex: index,
+              items: [
+                BottomNavigationBarItem(
+                    activeIcon: Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Image.asset(
+                        AppAssets.iconHome,
+                        color: AppColor.yellowBg,
+                      ),
+                    ),
+                    icon: Image.asset(AppAssets.iconHome),
+                    label: ''),
+                BottomNavigationBarItem(
+                    activeIcon: Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Image.asset(
+                        AppAssets.iconSearch,
+                        color: AppColor.yellowBg,
+                      ),
+                    ),
+                    icon: Image.asset(AppAssets.iconSearch),
+                    label: ''),
+                BottomNavigationBarItem(
+                    activeIcon: Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Image.asset(
+                        AppAssets.iconExplore,
+                        color: AppColor.yellowBg,
+                      ),
+                    ),
+                    icon: Image.asset(AppAssets.iconExplore),
+                    label: ''),
+                BottomNavigationBarItem(
+                    activeIcon: Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Image.asset(
+                        AppAssets.iconProfiel,
+                        color: AppColor.yellowBg,
+                      ),
+                    ),
+                    icon: Image.asset(AppAssets.iconProfiel),
+                    label: ''),
+              ]),
+        ),
       ),
-    ),
-    );}}
-
+    );
+  }
+}

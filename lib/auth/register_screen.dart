@@ -246,9 +246,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           backgroundColor:
                           const WidgetStatePropertyAll(AppColor.yellow)),
                       onPressed: () {
-                      if(formKey.currentState?.validate()==true)
+                     // if(formKey.currentState?.validate()==true)
                         Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
-                         {}
+
                       },
                       child: const Padding(
                         padding: EdgeInsets.all(12.0),

@@ -1,6 +1,10 @@
 class AppAssets {
   static const String appLogo = 'assets/images/316662-P9J1RJ-122 1.png';
   static const String registerPic = 'assets/images/Group 45.png';
+  static const String gradient = 'assets/images/gradient.png';
+  static const String watchNow = 'assets/images/Group 7.png';
+  static const String star = 'assets/images/star 1.png';
+  static const String tempBackground = 'assets/images/1917_-_Sam_Mendes_-_Hollywood_War_Film_Classic_English_Movie_Poster_9ef86295-4756-4c71-bb4e-20745c5fbc1a 3.png';
   static const String forgetPassPic = 'assets/images/Forgot password-bro 1.png';
 
   static String googleIcon = 'assets/images/icon _google_.png';
