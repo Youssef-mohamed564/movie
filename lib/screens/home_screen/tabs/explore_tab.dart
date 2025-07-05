@@ -6,6 +6,11 @@ class ExploreTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('ExploreTab',style: TextStyle(color:Colors.orange,fontSize: 50),),);
+    return Center(
+      child: Text(
+        'ExploreTab',
+        style: TextStyle(color: Colors.green, fontSize: 50),
+      ),
+    );
   }
 }
