@@ -27,8 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
-    //final viewModel = Provider.of<ViewModel>(context);
+   // final viewModel = Provider.of<ViewModel>(context);
     return Scaffold(
+      backgroundColor: AppColor.black,
+
       body: tabs[index],
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
