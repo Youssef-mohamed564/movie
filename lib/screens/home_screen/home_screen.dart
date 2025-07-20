@@ -5,8 +5,6 @@ import 'package:movie_app/screens/home_screen/tabs/profile_tab.dart';
 import 'package:movie_app/screens/home_screen/tabs/home_tab.dart';
 import 'package:movie_app/screens/home_screen/tabs/explore_tab.dart';
 import 'package:movie_app/screens/home_screen/tabs/search_tab.dart';
-import 'package:movie_app/screens/home_screen/widget/view_model.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/HomeScreen';

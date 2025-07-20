@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/common/app_assets.dart';
 import 'package:movie_app/common/app_colors.dart';
-import 'package:provider/provider.dart';
 import 'package:movie_app/common/App Styles.dart';
 
 class UpdateProfileTab extends StatefulWidget {
@@ -127,7 +125,7 @@ class _UpdateProfileTabState extends State<UpdateProfileTab> {
               controller: nameController,
               style: AppStyles.semi16White,
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.person,
                   color: AppColor.white,
                 ),
@@ -149,7 +147,7 @@ class _UpdateProfileTabState extends State<UpdateProfileTab> {
               controller: phoneController,
               style: AppStyles.semi16White,
               decoration: InputDecoration(
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.phone,
                   color: AppColor.white,
                 ),

@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/api/api_maneger.dart';
 import 'package:movie_app/common/app_assets.dart';
 import 'package:movie_app/common/app_colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:movie_app/screens/home_screen/widget/movie_card.dart';
+import 'package:movie_app/screens/home_screen/widget/view_model.dart';
+import 'package:provider/provider.dart';
 
-class HomeTab extends StatelessWidget {
+import '../../../common/App Styles.dart';
+import '../../../model/movies_response.dart';
+
+class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  late Future<MoviesResponce?> futureMovies;
+
+  @override
+  void initState() {
+    super.initState();
+    futureMovies = ApiManager.getMovies();
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-
+    MoviesListProvider moviesListProvider = MoviesListProvider();
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColor.black,
@@ -27,15 +47,66 @@ class HomeTab extends StatelessWidget {
                       left: width * .07,
                       child: Image.asset(AppAssets.watchNow)),
                   Padding(
-                    padding: EdgeInsets.only(top: height * .15),
+                    padding: EdgeInsets.only(top: height * .17),
                     child: Center(
                       child: CarouselSlider(
+                        disableGesture: false,
                         options: CarouselOptions(
-                            height: height * .4, enlargeCenterPage: true),
-                        items: [1, 2, 3, 4, 5].map((i) {
+                            clipBehavior: Clip.antiAlias,
+                            animateToClosest: true,
+                            height: height * .6,
+                            enlargeCenterPage: true),
+                        items: //todo
+                            List.generate(150, (index) => index + 1).map((i) {
                           return Builder(
                             builder: (BuildContext context) {
-                              return MovieCard(widthOfW: width*.5,);
+                              return FutureBuilder(
+                                  future: ApiManager.getMovies(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    } else if (snapshot.hasError) {
+                                      return Column(children: [
+                                        Text(
+                                          snapshot.error.toString(),
+                                          style: AppStyles.semi20White,
+                                        ),
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              ApiManager.getMovies();
+                                              setState(() {});
+                                            },
+                                            child: Text('Try Again',
+                                                style: AppStyles.semi20White))
+                                      ]);
+                                    } else if (snapshot.data?.status != 'ok') {
+                                      return Column(children: [
+                                        Text(
+                                          snapshot.data!.statusMessage!,
+                                          style: AppStyles.semi20White,
+                                        ),
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              ApiManager.getMovies();
+                                              setState(() {});
+                                            },
+                                            child: Text(
+                                              'Try Again',
+                                              style: AppStyles.semi20White,
+                                            ))
+                                      ]);
+                                    } else {
+                                      var moviesList =
+                                          snapshot.data?.data?.movies ?? [];
+
+                                      return MovieCard(
+                                        topW: width * .5,
+                                        movie: moviesList[i],
+                                      );
+                                    }
+                                  });
                             },
                           );
                         }).toList(),
@@ -45,8 +116,7 @@ class HomeTab extends StatelessWidget {
                 ],
               ),
               const Padding(
-                padding:
-                    EdgeInsets.only(top: 8.0, right: 8, left: 8, bottom: 2),
+                padding: EdgeInsets.only(right: 8, left: 8, bottom: 2),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -80,11 +150,56 @@ class HomeTab extends StatelessWidget {
                 height: height * .3,
                 width: width * .95,
                 child: ListView.builder(
-                  itemCount: 4,
+                  itemCount: 100,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: MovieCard(widthOfW: width*.35,),
+                    child: FutureBuilder(
+                        future: ApiManager.getMovies(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                            return Column(children: [
+                              Text(
+                                snapshot.error.toString(),
+                                style: AppStyles.semi20White,
+                              ),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    ApiManager.getMovies();
+                                    setState(() {});
+                                  },
+                                  child: Text('Try Again',
+                                      style: AppStyles.semi20White))
+                            ]);
+                          } else if (snapshot.data?.status != 'ok') {
+                            return Column(children: [
+                              Text(
+                                snapshot.data!.statusMessage!,
+                                style: AppStyles.semi20White,
+                              ),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    ApiManager.getMovies();
+                                    setState(() {});
+                                  },
+                                  child: Text(
+                                    'Try Again',
+                                    style: AppStyles.semi20White,
+                                  ))
+                            ]);
+                          } else {
+                            var moviesList = snapshot.data?.data?.movies ?? [];
+
+                            return MovieCard(
+                              topW: width * .4,
+                              movie: moviesList[index],
+                            );
+                          }
+                        }),
                   ),
                 ),
               )

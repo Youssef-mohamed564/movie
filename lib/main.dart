@@ -3,9 +3,7 @@ import 'package:movie_app/auth/forget_pass.dart';
 import 'package:movie_app/auth/login_screen.dart';
 import 'package:movie_app/auth/register_screen.dart';
 import 'package:movie_app/screens/home_screen/home_screen.dart';
-import 'auth/forget_pass.dart';
-import 'auth/login_screen.dart';
-import 'auth/register_screen.dart';
+
 import 'on boarding/onboarding_screen.dart';
 import 'dart:async';
 

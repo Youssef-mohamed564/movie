@@ -1,17 +1,24 @@
 import 'package:flutter/cupertino.dart';
+import 'package:movie_app/api/api_maneger.dart';
+import 'package:movie_app/model/movie.dart';
 
-import 'movie_model.dart';
+class MoviesListProvider extends ChangeNotifier {
+  int selectedIndex = 0;
+  List<Movies>? moviesList = [];
+  String? errorMessage;
 
-class ViewModel extends ChangeNotifier {
-  List<Movie> _movies = [
-    Movie(title: '1917', image: 'assets/images/movie1.jpg', rating: 7.7),
-    Movie(title: 'Captain Marvel', image: 'assets/images/movie2.jpg', rating: 7.7),
-    Movie(title: 'The Dark Knight', image:' assets/images/movie3.jpg', rating: 7.7),
-  ];
-
-  List<Movie> get movies => _movies;
-  void addMovie(Movie movie) {
-    _movies.add(movie);
-    notifyListeners();
+  Future<void> getAllMovies() async {
+    try {
+      var response = await ApiManager.getMovies();
+      if (response?.status == 'error') {
+        errorMessage = response?.statusMessage;
+      } else {
+        moviesList = response?.data?.movies?.cast<Movies>();
+      }
+    } catch (e) {
+      errorMessage = e.toString();
+    }
   }
+
+
 }
